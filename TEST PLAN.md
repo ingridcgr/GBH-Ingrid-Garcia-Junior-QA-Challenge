@@ -1,224 +1,141 @@
-# GBH-Ingrid-Garcia-Junior-QA-Challenge
-# 🧪 OrangeHRM + Disney API Test Automation Project
+Test Plan — QA Automation Challenge
+===================================
 
-## 📌 Overview
+📌 Overview
+-----------
 
-This test plan and automation suite was built by **Ingrid Carolina Garcia** as part of a QA engineering challenge.
+This test plan outlines the strategy, scope, and rationale behind the automated test suite.
 
-Ingrid is a QA professional with 8+ years of experience in manual and automation testing across web and mobile platforms. Most recently she served as Acting QA Lead at Restaurant Brands International, where she reduced manual regression effort by ~70 hours per release and cut triage time by ~40%.
+The goal is to ensure high-value coverage across both UI and API layers while maintaining test independence and reliability.
 
----
+## 👤 About the Author
+This project was developed by Ingrid Garcia, a QA engineer with experience in manual and automation testing across web and mobile applications.
+The solution reflects a practical, real-world testing approach focused on high-impact coverage, data integrity, and maintainability.
 
-### 🧪 What this suite covers
-
-| Layer | Target | Tool |
-|---|---|---|
-| UI Testing | OrangeHRM Demo | Playwright + JavaScript |
-| API Testing | Disney API | Postman + Newman |
-| CI/CD | GitHub Actions | yml workflow |
-| Reporting | HTML reports + artifacts | Playwright HTML + Newman HTML |
-
----
-
-### 🎯 What this challenge demonstrates
-
-- Test cases chosen based on real user frequency, input validation depth, and module coverage — not just happy paths
-- Each test manages its own session and data — no cross-test dependencies
-- Tool selection matched to each testing layer (Playwright for UI, Newman for API)
-
-------------------------------------------------------------------------
-
-## 🎯 Scope
-
----
+🎯 Scope
+--------
 
 ### ✅ UI Testing — OrangeHRM Demo
 
-🔗 https://opensource-demo.orangehrmlive.com
+[https://opensource-demo.orangehrmlive.com](https://opensource-demo.orangehrmlive.com/)
 
-**Covered areas:**
+Covered areas:
 
-- Authentication (sign in, sign out, invalid login)
-- Admin module:
-  - Nationality validation
-  - Qualification (skill) lifecycle
-- Buzz module (dynamic content interaction)
-- Personal Information (Date of Birth validation)
+*   Authentication
+    
+*   Admin module (Nationality, Qualification)
+    
+*   Buzz module
+    
+*   Personal Information
+    
 
-**Out of scope:**
+Out of scope:
 
-- Recruitment, Performance, Time, and Reports modules
-- Employee creation and deletion via PIM
-- Cross-browser testing (Chromium only)
-- Visual/pixel-level regression testing
-- Load, stress, or performance testing
-- Mobile viewports or responsive layout testing
-
----
+*   Recruitment, Performance, Time modules
+    
+*   Employee lifecycle via PIM
+    
+*   Cross-browser testing
+    
+*   Performance and load testing
+    
+*   Mobile/responsive testing
+    
 
 ### ✅ API Testing — Disney API
 
-🔗 https://api.disneyapi.dev
+[https://api.disneyapi.dev](https://api.disneyapi.dev/)
 
-**Covered endpoints:**
+Covered:
 
-- `GET /character` — full list, response structure, status code, pagination
-- `GET /character?films=...` — filter by TV show (Jake and the Never Land Pirates)
-- `GET /character?videoGames=...` — filter by video game (Kingdom Hearts III)
+*   GET /character
+    
+*   Filtering (films, video games)
+    
+*   Response validation
+    
+*   Negative scenarios
+    
 
-**Negative scenarios:**
+Out of scope:
 
-- Invalid endpoints
-- Non-existent IDs
-- Malformed requests
-- Error response structure validation
+*   Authentication (public API)
+    
+*   Write operations
+    
+*   Performance testing
+    
 
-**Out of scope:**
+📋 Test Case Classification
+---------------------------
 
-- Authentication flows (API is public and unauthenticated)
-- Write operations (API is read-only)
-- Rate limit or performance testing
+IDTest CaseTypeTC-01Valid loginHappy PathTC-02Invalid loginNegativeTC-03LogoutHappy PathTC-04Numeric nationalityEdge + NegativeTC-05Add/Delete skillHappy PathTC-06Share Buzz postEdge CaseTC-07Invalid DOB inputNegative
 
-------------------------------------------------------------------------
-## 📋 Test Cases — Classification & Rationale
+🧠 Rationale
+------------
 
-This section outlines the selected test cases, their classification, and the reasoning behind each choice.
-The goal is to balance **critical coverage, validation depth, and environment safety**.
+*   **Authentication (TC-01, TC-02, TC-03)**Critical entry point. Failures here block all functionality.
+    
+*   **Nationality validation (TC-04)**Tests semantic correctness, not just required fields.
+    
+*   **Qualification lifecycle (TC-05)**Combines create/delete to avoid test data pollution.
+    
+*   **Buzz interaction (TC-06)**Covers dynamic UI behavior using runtime data.
+    
+*   **DOB validation (TC-07)**Ensures strict input type enforcement.
+    
 
----
+🧠 Design Decisions
+-------------------
 
-### 🔹 Test Case Table
+*   Tests are **independent** (no shared state)
+    
+*   Data is **cleaned up when needed**
+    
+*   Focus on **high-impact scenarios over quantity**
+    
+*   Selectors chosen for **stability and readability**
+    
 
-| ID | Test Case | Module | Type |
-|---|---|---|---|
-| **TC-01** | Valid sign in redirects to dashboard | Authentication | ✅ Happy Path |
-| **TC-02** | Wrong password shows error message | Authentication | ❌ Negative |
-| **TC-03** | Sign out redirects to login page | Authentication | ✅ Happy Path |
-| **TC-04** | Add nationality as `"1234"` | Admin | ⚠️ Edge Case + Negative |
-| **TC-05** | Add and delete a qualification (skill) | Admin | ✅ Happy Path (CRUD) |
-| **TC-06** | Share most-liked post from Buzz feed | Buzz | ⚠️ Edge Case |
-| **TC-07** | Enter alphabetical input in Date of Birth | Personal Info | ❌ Negative |
+🔌 API Testing Approach
+-----------------------
 
----
+*   Postman used for request design
+    
+*   Newman used for automation
+    
+*   Assertions include:
+    
+    *   Status codes
+        
+    *   Response structure
+        
+    *   Edge cases
+        
 
-### 🧾 Rationale per Test Case
+🧪 Coverage Summary
+-------------------
 
-**TC-01 — Valid sign in**
-Core critical path. All users must authenticate to access the system. Any failure here blocks all functionality — this is the highest-priority test in the suite.
+CategoryTestsHappy PathTC-01, TC-03, TC-05NegativeTC-02, TC-04, TC-07Edge CasesTC-04, TC-06
 
-**TC-02 — Wrong password**
-Ensures invalid credentials are rejected and that proper error feedback is displayed to the user. Validates the security boundary of the authentication flow.
+⚠️ Assumptions
+--------------
 
-**TC-03 — Sign out**
-Validates session termination and ensures users cannot continue accessing the system after logout. Session management is as critical as session creation.
+*   OrangeHRM demo data is stable
+    
+*   API endpoints remain public and unchanged
+    
+*   UI behavior may vary slightly due to environment timing
+    
 
-**TC-04 — Add nationality as `"1234"`**
-Validates semantic data integrity. A nationality is alphabetical by definition — no nationality in any language is represented by digits. This tests domain-level validation beyond basic required-field checks.
+💡 Notes
+--------
 
-**TC-05 — Add and delete a qualification (skill)**
-Verifies create and delete functionality in a single flow while restoring the environment to its original state. Combining both actions is intentional: it avoids test data pollution on the shared demo environment and eliminates a cross-test dependency.
+The test suite prioritizes:
 
-**TC-06 — Share most-liked post from Buzz feed**
-Handles dynamic, non-deterministic UI content — the target post is resolved at runtime based on live like counts, not hardcoded. This demonstrates selector flexibility and covers a module typically deprioritised in automation.
-
-**TC-07 — Alphabetical input in Date of Birth**
-Ensures strict type validation for date fields. Alphabetical characters should be rejected at the UI layer to prevent invalid data from being submitted or silently stored.
-
----
-
-### 🧠 Test Coverage Breakdown
-
-| Category | Test IDs |
-|---|---|
-| ✅ Happy Path | TC-01, TC-03, TC-05 |
-| ❌ Negative | TC-02, TC-04, TC-07 |
-| ⚠️ Edge Case | TC-04, TC-06 |
-
----
-
-### ⚖️ Design Notes
-
-- **TC-04** ensures domain-level validation beyond basic input checks — it tests whether the application understands the *meaning* of the data, not just its presence.
-- **TC-05** combines create and delete actions to maintain environment hygiene and avoid test data pollution on a shared demo platform.
-- **TC-06** demonstrates handling of dynamic UI elements, which are typically avoided in automation due to instability — including it shows confidence in building resilient selectors.
-
-------------------------------------------------------------------------
-
-## 🔌 API Testing Approach (Postman)
-
-API testing is handled using Postman to:
-
-- Separate UI and API concerns
-- Enable faster request validation
-- Use built-in scripting and collections
-
----
-
-## 🛠️ Tech Stack
-
-| Tool | Purpose |
-|---|---|
-| Playwright | UI Automation |
-| JavaScript (Node.js) | Test language |
-| Postman + Newman | API Testing |
-| GitHub Actions | CI/CD pipeline |
-| GitHub | Version control |
-
----
-
-------------------------------------------------------------------------
-
-## ▶️ Running the Tests
-
-Open the project in **Visual Studio Code**, then open the integrated terminal (`Terminal > New Terminal`) and run the following commands.
-
----
-
-### UI Tests (Playwright)
-
-Install dependencies:
-
-```bash
-npm install
-npx playwright install
-```
-
-Run all UI tests:
-
-```bash
-npx playwright test
-```
-
-Run a specific test file:
-
-```bash
-npx playwright test tests/auth.spec.js
-```
-
-View the HTML report after the run:
-
-```bash
-npx playwright show-report
-```
-
----
-
-### API Tests (Postman / Newman)
-
-Install Newman globally:
-
-```bash
-npm install -g newman
-```
-
-Run the Disney API collection:
-
-```bash
-newman run postman/disney-api.json
-```
-
----
-
-## 💡 Notes
-
-This project prioritizes **high-impact test coverage and real-world QA decisions** over quantity.
+*   Real-world usage scenarios
+    
+*   Data integrity validation
+    
+*   Maintainability and reliability
