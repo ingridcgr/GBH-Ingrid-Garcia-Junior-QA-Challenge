@@ -19,28 +19,54 @@ Critical path coverage\
 
 ## 🎯 Scope
 
-### ✅ UI Testing --- OrangeHRM Demo
+---
 
-https://opensource-demo.orangehrmlive.com
+### ✅ UI Testing — OrangeHRM Demo
 
-Covered areas: - Authentication (sign in, sign out, invalid login) -
-Admin module: - Nationality validation - Qualification (skill)
-lifecycle - Buzz module (dynamic content interaction) - Personal
-Information (Date of Birth validation)
+🔗 https://opensource-demo.orangehrmlive.com
 
-------------------------------------------------------------------------
+**Covered areas:**
 
-### ✅ API Testing --- Disney API
+- Authentication (sign in, sign out, invalid login)
+- Admin module:
+  - Nationality validation
+  - Qualification (skill) lifecycle
+- Buzz module (dynamic content interaction)
+- Personal Information (Date of Birth validation)
 
-https://api.disneyapi.dev
+**Out of scope:**
 
-Covered endpoints: - GET /character --- list, structure, pagination\
-- GET /character?films=... --- filtering\
-- GET /character?videoGames=... --- filtering
+- Recruitment, Performance, Time, and Reports modules
+- Employee creation and deletion via PIM
+- Cross-browser testing (Chromium only)
+- Visual/pixel-level regression testing
+- Load, stress, or performance testing
+- Mobile viewports or responsive layout testing
 
-Negative scenarios: - Invalid endpoints\
-- Non-existent IDs\
+---
+
+### ✅ API Testing — Disney API
+
+🔗 https://api.disneyapi.dev
+
+**Covered endpoints:**
+
+- `GET /character` — full list, response structure, status code, pagination
+- `GET /character?films=...` — filter by TV show (Jake and the Never Land Pirates)
+- `GET /character?videoGames=...` — filter by video game (Kingdom Hearts III)
+
+**Negative scenarios:**
+
+- Invalid endpoints
+- Non-existent IDs
 - Malformed requests
+- Error response structure validation
+
+**Out of scope:**
+
+- Authentication flows (API is public and unauthenticated)
+- Write operations (API is read-only)
+- Rate limit or performance testing
 
 ------------------------------------------------------------------------
 ## 📋 Test Cases — Classification & Rationale
