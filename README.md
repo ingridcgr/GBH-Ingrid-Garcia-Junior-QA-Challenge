@@ -62,20 +62,15 @@ ToolPurposeNode.js (v20)RuntimePlaywrightUI automationNewmanAPI test runnerPostm
 ### UI Tests (/test)
 
 *   auth.spec.js → authentication
-    
 *   buzz.spec.js → dynamic content
-    
 *   myinfo.spec.js → user data
-    
 *   nationality.spec.js → validation
-    
 *   qualification.spec.js → CRUD flows
     
 
 ### API Tests (/postman)
 
 *   Collection-based testing
-    
 *   Covers status codes, filters, and edge cases
     
 
@@ -83,7 +78,13 @@ ToolPurposeNode.js (v20)RuntimePlaywrightUI automationNewmanAPI test runnerPostm
 ------------
 
 *   Playwright → HTML reports
-    
-*   Newman → JUnit reports
-    
+*   Newman → JUnit reports 
 *   Both available in CI artifacts
+
+AI Tools
+------------
+
+*   Clause AI for API Testing creation and UI Test Cases fixes, examples:
+        - https://claude.ai/share/ffb2ca6f-b284-4625-8639-905d4a27badd
+        - https://claude.ai/share/c8df5555-316b-49f6-bd0a-edc6109bc711
+*   Cross-reference with Codex and Cursor
