@@ -43,85 +43,67 @@ Negative scenarios: - Invalid endpoints\
 - Malformed requests
 
 ------------------------------------------------------------------------
-## 📋 Test Cases --- Classification & Rationale
+## 📋 Test Cases — Classification & Rationale
 
-This section outlines the selected test cases, their classification, and
-the reasoning behind each choice.\
-The goal is to balance **critical coverage, validation depth, and
-environment safety**.
+This section outlines the selected test cases, their classification, and the reasoning behind each choice.
+The goal is to balance **critical coverage, validation depth, and environment safety**.
 
-------------------------------------------------------------------------
+---
 
 ### 🔹 Test Case Table
 
-  -----------------------------------------------------------------------------------
-  ID         - Test Case        -  Module        -   Type       -    Rationale
-  ----------- ------------------ ---------------- -------------- --------------------
-  **TC-01**  - Valid sign in     - Authentication  - **Happy Path** - Core critical path.
-              redirects to                                       All users must
-              dashboard                                          authenticate to
-                                                                 access the system.
-                                                                 Any failure blocks
-                                                                 all functionality.
+| ID | Test Case | Module | Type |
+|---|---|---|---|
+| **TC-01** | Valid sign in redirects to dashboard | Authentication | ✅ Happy Path |
+| **TC-02** | Wrong password shows error message | Authentication | ❌ Negative |
+| **TC-03** | Sign out redirects to login page | Authentication | ✅ Happy Path |
+| **TC-04** | Add nationality as `"1234"` | Admin | ⚠️ Edge Case + Negative |
+| **TC-05** | Add and delete a qualification (skill) | Admin | ✅ Happy Path (CRUD) |
+| **TC-06** | Share most-liked post from Buzz feed | Buzz | ⚠️ Edge Case |
+| **TC-07** | Enter alphabetical input in Date of Birth | Personal Info | ❌ Negative |
 
-  **TC-02**  - Wrong password    - Authentication   - **Negative**  - Ensures invalid
-              shows error                                        credentials are
-              message                                            rejected and proper
-                                                                 feedback is
-                                                                 displayed to the
-                                                                 user.
+---
 
-  **TC-03**   - Sign out redirects - Authentication   - **Happy Path** - Validates session
-              to login page                                      termination and
-                                                                 ensures users cannot
-                                                                 continue accessing
-                                                                 the system after
-                                                                 logout.
+### 🧾 Rationale per Test Case
 
-  **TC-04**   Add nationality as Admin           **Edge Case +   Validates semantic
-              "1234"                              Negative**     data integrity. A
-                                                                 nationality cannot
-                                                                 be numeric, ensuring
-                                                                 domain-level
-                                                                 validation.
+**TC-01 — Valid sign in**
+Core critical path. All users must authenticate to access the system. Any failure here blocks all functionality — this is the highest-priority test in the suite.
 
-  **TC-05**   Add and delete a Admin             **Happy Path    Verifies create and
-              qualification                       (CRUD)**       delete functionality
-              (skill)                                            in a single flow
-                                                                 while restoring the
-                                                                 environment state.
+**TC-02 — Wrong password**
+Ensures invalid credentials are rejected and that proper error feedback is displayed to the user. Validates the security boundary of the authentication flow.
 
-  **TC-06**   Share most-liked   Buzz             **Edge Case**  Handles dynamic,
-              post from Buzz                                     non-deterministic UI
-              feed                                               content and
-                                                                 demonstrates
-                                                                 selector
-                                                                 flexibility.
-                                                                 
-  **TC-07**   Enter alphabetical Personal Info    **Negative**   Ensures strict type
-              input in Date of                                   validation for date
-              Birth                                              fields and prevents
-                                                                 invalid data entry.
-  -----------------------------------------------------------------------------------
+**TC-03 — Sign out**
+Validates session termination and ensures users cannot continue accessing the system after logout. Session management is as critical as session creation.
 
-------------------------------------------------------------------------
+**TC-04 — Add nationality as `"1234"`**
+Validates semantic data integrity. A nationality is alphabetical by definition — no nationality in any language is represented by digits. This tests domain-level validation beyond basic required-field checks.
+
+**TC-05 — Add and delete a qualification (skill)**
+Verifies create and delete functionality in a single flow while restoring the environment to its original state. Combining both actions is intentional: it avoids test data pollution on the shared demo environment and eliminates a cross-test dependency.
+
+**TC-06 — Share most-liked post from Buzz feed**
+Handles dynamic, non-deterministic UI content — the target post is resolved at runtime based on live like counts, not hardcoded. This demonstrates selector flexibility and covers a module typically deprioritised in automation.
+
+**TC-07 — Alphabetical input in Date of Birth**
+Ensures strict type validation for date fields. Alphabetical characters should be rejected at the UI layer to prevent invalid data from being submitted or silently stored.
+
+---
 
 ### 🧠 Test Coverage Breakdown
 
--   **Happy Path Tests:** TC-01, TC-03, TC-05\
--   **Negative Tests:** TC-02, TC-04, TC-07\
--   **Edge Cases:** TC-04, TC-06
+| Category | Test IDs |
+|---|---|
+| ✅ Happy Path | TC-01, TC-03, TC-05 |
+| ❌ Negative | TC-02, TC-04, TC-07 |
+| ⚠️ Edge Case | TC-04, TC-06 |
 
-------------------------------------------------------------------------
+---
 
 ### ⚖️ Design Notes
 
--   **TC-04** ensures domain-level validation beyond basic input
-    checks.\
--   **TC-05** combines create and delete actions to maintain environment
-    hygiene and avoid test data pollution.\
--   **TC-06** demonstrates handling of dynamic UI elements, which are
-    typically avoided in automation due to instability.
+- **TC-04** ensures domain-level validation beyond basic input checks — it tests whether the application understands the *meaning* of the data, not just its presence.
+- **TC-05** combines create and delete actions to maintain environment hygiene and avoid test data pollution on a shared demo platform.
+- **TC-06** demonstrates handling of dynamic UI elements, which are typically avoided in automation due to instability — including it shows confidence in building resilient selectors.
 
 ------------------------------------------------------------------------
 
