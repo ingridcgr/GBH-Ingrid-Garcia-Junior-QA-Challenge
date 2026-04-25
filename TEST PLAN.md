@@ -3,17 +3,28 @@
 
 ## 📌 Overview
 
-This project contains an automated test suite built using **Playwright
-(JavaScript)** for UI testing and **Postman** for API testing.
+This test plan and automation suite was built by **Ingrid Carolina Garcia** as part of a QA engineering challenge.
 
-It validates: - UI flows on the OrangeHRM demo application\
-- API endpoints from the Disney API
+Ingrid is a QA professional with 8+ years of experience in manual and automation testing across web and mobile platforms. Most recently she served as Acting QA Lead at Restaurant Brands International, where she reduced manual regression effort by ~70 hours per release and cut triage time by ~40%.
 
-The goal is to demonstrate **real-world QA thinking**, including: -
-Critical path coverage\
-- Semantic input validation\
-- Environment-safe execution\
-- Proper tool selection per testing layer
+---
+
+### 🧪 What this suite covers
+
+| Layer | Target | Tool |
+|---|---|---|
+| UI Testing | OrangeHRM Demo | Playwright + JavaScript |
+| API Testing | Disney API | Postman + Newman |
+| CI/CD | GitHub Actions | yml workflow |
+| Reporting | HTML reports + artifacts | Playwright HTML + Newman HTML |
+
+---
+
+### 🎯 What this challenge demonstrates
+
+- Test cases chosen based on real user frequency, input validation depth, and module coverage — not just happy paths
+- Each test manages its own session and data — no cross-test dependencies
+- Tool selection matched to each testing layer (Playwright for UI, Newman for API)
 
 ------------------------------------------------------------------------
 
