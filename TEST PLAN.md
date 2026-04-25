@@ -146,30 +146,52 @@ Ensures strict type validation for date fields. Alphabetical characters should b
 
 ## 🔌 API Testing Approach (Postman)
 
-API testing is handled using Postman to: 
-- Separate UI and API concerns\
-- Enable faster request validation\
+API testing is handled using Postman to:
+
+- Separate UI and API concerns
+- Enable faster request validation
 - Use built-in scripting and collections
 
-------------------------------------------------------------------------
+---
 
 ## 🛠️ Tech Stack
 
--   Playwright --- UI Automation\
--   JavaScript (Node.js)\
--   Postman --- API Testing\
--   GitHub --- Version control
+| Tool | Purpose |
+|---|---|
+| Playwright | UI Automation |
+| JavaScript (Node.js) | Test language |
+| Postman + Newman | API Testing |
+| GitHub Actions | CI/CD pipeline |
+| GitHub | Version control |
 
-------------------------------------------------------------------------
+---
 
 ## 📁 Project Structure
 
-project-root/ ├── tests/\
-├── pages/\
-├── postman/\
-│ └── disney-api.json ├── TEST_PLAN.md\
-├── README.md\
-└── playwright.config.js
+```
+project-root/
+├── tests/
+│   ├── auth.spec.js
+│   ├── nationality.spec.js
+│   ├── qualification.spec.js
+│   ├── buzz.spec.js
+│   └── myinfo.spec.js
+├── pages/
+│   ├── LoginPage.js
+│   ├── DashboardPage.js
+│   ├── NationalityPage.js
+│   ├── QualificationPage.js
+│   ├── BuzzPage.js
+│   └── MyInfoPage.js
+├── postman/
+│   └── disney-api.json
+├── .github/
+│   └── workflows/
+│       └── ui-tests.yml
+├── playwright.config.js
+├── TEST_PLAN.md
+└── README.md
+```
 
 ------------------------------------------------------------------------
 
