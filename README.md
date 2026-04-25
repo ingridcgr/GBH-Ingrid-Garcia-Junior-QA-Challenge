@@ -85,6 +85,6 @@ AI Tools
 ------------
 
 *   Clause AI for API Testing creation and UI Test Cases fixes, examples:
-        - https://claude.ai/share/ffb2ca6f-b284-4625-8639-905d4a27badd
-        - https://claude.ai/share/c8df5555-316b-49f6-bd0a-edc6109bc711
+  https://claude.ai/share/ffb2ca6f-b284-4625-8639-905d4a27badd
+  https://claude.ai/share/c8df5555-316b-49f6-bd0a-edc6109bc711
 *   Cross-reference with Codex and Cursor
