@@ -197,19 +197,55 @@ project-root/
 
 ## ▶️ Running the Tests
 
+Open the project in **Visual Studio Code**, then open the integrated terminal (`Terminal > New Terminal`) and run the following commands.
+
+---
+
 ### UI Tests (Playwright)
 
-npm install\
+Install dependencies:
+
+```bash
+npm install
+npx playwright install
+```
+
+Run all UI tests:
+
+```bash
 npx playwright test
+```
+
+Run a specific test file:
+
+```bash
+npx playwright test tests/auth.spec.js
+```
+
+View the HTML report after the run:
+
+```bash
+npx playwright show-report
+```
+
+---
 
 ### API Tests (Postman / Newman)
 
-npm install -g newman\
-newman run postman/disney-api.json
+Install Newman globally:
 
-------------------------------------------------------------------------
+```bash
+npm install -g newman
+```
+
+Run the Disney API collection:
+
+```bash
+newman run postman/disney-api.json
+```
+
+---
 
 ## 💡 Notes
 
-This project prioritizes **high-impact test coverage and real-world QA
-decisions** over quantity.
+This project prioritizes **high-impact test coverage and real-world QA decisions** over quantity.
