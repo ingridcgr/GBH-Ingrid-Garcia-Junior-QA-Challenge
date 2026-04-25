@@ -55,37 +55,37 @@ environment safety**.
 ### 🔹 Test Case Table
 
   -----------------------------------------------------------------------------------
-  ID          Test Case          Module           Type           Rationale
+  ID         - Test Case        -  Module        -   Type       -    Rationale
   ----------- ------------------ ---------------- -------------- --------------------
-  **TC-01**   Valid sign in      Authentication   **Happy Path** Core critical path.
+  **TC-01**  - Valid sign in     - Authentication  - **Happy Path** - Core critical path.
               redirects to                                       All users must
               dashboard                                          authenticate to
                                                                  access the system.
                                                                  Any failure blocks
                                                                  all functionality.
 
-  **TC-02**   Wrong password     Authentication   **Negative**   Ensures invalid
+  **TC-02**  - Wrong password    - Authentication   - **Negative**  - Ensures invalid
               shows error                                        credentials are
               message                                            rejected and proper
                                                                  feedback is
                                                                  displayed to the
                                                                  user.
 
-  **TC-03**   Sign out redirects Authentication   **Happy Path** Validates session
+  **TC-03**   - Sign out redirects - Authentication   - **Happy Path** - Validates session
               to login page                                      termination and
                                                                  ensures users cannot
                                                                  continue accessing
                                                                  the system after
                                                                  logout.
 
-  **TC-04**   Add nationality as Admin            **Edge Case +  Validates semantic
+  **TC-04**   - Add nationality as Admin            - **Edge Case +  - Validates semantic
               "1234"                              Negative**     data integrity. A
                                                                  nationality cannot
                                                                  be numeric, ensuring
                                                                  domain-level
                                                                  validation.
 
-  **TC-05**   Add and delete a   Admin            **Happy Path   Verifies create and
+  **TC-05**   - Add and delete a   - Admin            - **Happy Path   - Verifies create and
               qualification                       (CRUD)**       delete functionality
               (skill)                                            in a single flow
                                                                  while restoring the
