@@ -56,9 +56,9 @@ The goal is to balance **critical coverage, validation depth, and environment sa
 | **TC-01** | Valid sign in redirects to dashboard | Authentication | ✅ Happy Path |
 | **TC-02** | Wrong password shows error message | Authentication | ❌ Negative |
 | **TC-03** | Sign out redirects to login page | Authentication | ✅ Happy Path |
-| **TC-04** | Add nationality as `"1234"` | Admin | ⚠️ Edge Case + Negative |
+| **TC-04** | Add nationality | Admin | ⚠️ Edge Case |
 | **TC-05** | Add and delete a qualification (skill) | Admin | ✅ Happy Path (CRUD) |
-| **TC-06** | Share most-liked post from Buzz feed | Buzz | ⚠️ Edge Case |
+| **TC-06** | Filter Buzz Post by Most Liked | Buzz | ⚠️ Edge Case |
 | **TC-07** | Enter alphabetical input in Date of Birth | Personal Info | ❌ Negative |
 
 ---
@@ -80,7 +80,7 @@ Validates semantic data integrity. A nationality is alphabetical by definition �
 **TC-05 — Add and delete a qualification (skill)**
 Verifies create and delete functionality in a single flow while restoring the environment to its original state. Combining both actions is intentional: it avoids test data pollution on the shared demo environment and eliminates a cross-test dependency.
 
-**TC-06 — Share most-liked post from Buzz feed**
+**TC-06 — Filter Buzz Post by Most Liked**
 Handles dynamic, non-deterministic UI content — the target post is resolved at runtime based on live like counts, not hardcoded. This demonstrates selector flexibility and covers a module typically deprioritised in automation.
 
 **TC-07 — Alphabetical input in Date of Birth**
