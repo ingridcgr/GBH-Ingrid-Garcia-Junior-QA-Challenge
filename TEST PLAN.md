@@ -4,9 +4,9 @@ Test Plan — QA Automation Challenge
 📌 Overview
 -----------
 
-This test plan outlines the strategy, scope, and rationale behind the automated test suite.
+This test plan outlines the approach I used to design and implement automated UI and API tests for this challenge. The goal was to focus on writing clean, reliable, and maintainable tests rather than building a full framework. I selected test cases based on real user impact, validation depth, and risk, ensuring a mix of happy paths, negative scenarios, and edge cases.
 
-The goal is to ensure high-value coverage across both UI and API layers while maintaining test independence and reliability.
+The solution covers both UI (OrangeHRM) and API (Disney API) layers, with an emphasis on test independence, meaningful assertions, and practical coverage. Trade-offs were made to balance reliability, execution time, and scope within the constraints of the challenge.
 
 ## 👤 About the Author
 This project was developed by Ingrid Garcia, a QA engineer with experience in manual and automation testing across web and mobile applications.
