@@ -78,14 +78,14 @@ environment safety**.
                                                                  the system after
                                                                  logout.
 
-  **TC-04**   - Add nationality as Admin            - **Edge Case +  - Validates semantic
+  **TC-04**   Add nationality as Admin           **Edge Case +   Validates semantic
               "1234"                              Negative**     data integrity. A
                                                                  nationality cannot
                                                                  be numeric, ensuring
                                                                  domain-level
                                                                  validation.
 
-  **TC-05**   - Add and delete a   - Admin            - **Happy Path   - Verifies create and
+  **TC-05**   Add and delete a Admin             **Happy Path    Verifies create and
               qualification                       (CRUD)**       delete functionality
               (skill)                                            in a single flow
                                                                  while restoring the
@@ -97,7 +97,7 @@ environment safety**.
                                                                  demonstrates
                                                                  selector
                                                                  flexibility.
-
+                                                                 
   **TC-07**   Enter alphabetical Personal Info    **Negative**   Ensures strict type
               input in Date of                                   validation for date
               Birth                                              fields and prevents
