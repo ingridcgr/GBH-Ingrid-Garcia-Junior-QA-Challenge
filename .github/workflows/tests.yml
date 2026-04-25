@@ -1,6 +1,7 @@
 name: UI + API Test Suite
 
 on:
+  workflow_dispatch:
   push:
     branches: ["**"]
   pull_request:
@@ -11,39 +12,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 📥 Checkout repo
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 🟢 Setup Node
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "npm"
 
-      # 📦 Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # 🔥 Run API Tests (Newman)
       - name: Run API tests (Newman)
         run: |
           mkdir -p results
-          npx newman run postman/Disney_API_Collection_v2.postman_collection.json \
-            -e postman/Disney_API.postman_environment.json \
+          npx newman run API/Disney_API_Collection_v2.postman_collection.json \
+            -e API/Disney_API.postman_environment.json \
             --reporters cli,junit \
             --reporter-junit-export results/api-results.xml
 
-      # 🎭 Install Playwright browsers
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
-      # 🎭 Run UI tests
       - name: Run UI tests
         run: npx playwright test
 
-      # 📊 Upload API results (even if tests fail)
       - name: Upload API results
         if: always()
         uses: actions/upload-artifact@v4
@@ -51,7 +45,6 @@ jobs:
           name: api-results
           path: results/api-results.xml
 
-      # 📊 Upload UI report
       - name: Upload UI report
         if: always()
         uses: actions/upload-artifact@v4
