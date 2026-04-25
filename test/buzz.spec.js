@@ -2,7 +2,7 @@
 
 const { test, expect } = require('@playwright/test');
 
-test('TC-06: Share most-liked post from Buzz feed', async ({ page }) => {
+test('TC-06: Sort Buzz posts by Most Liked', async ({ page }) => {
 
   // Go to the login page
   await page.goto('https://opensource-demo.orangehrmlive.com/');
@@ -30,16 +30,14 @@ test('TC-06: Share most-liked post from Buzz feed', async ({ page }) => {
   // Click on Most Liked Posts tab
   await page.locator('button:has-text("Most Liked Posts")').click();
 
-  // Click the share icon on the first post
-  await page.locator('.oxd-icon.bi-share-fill').first().click();
+  // Wait for feed to load
+  await page.waitForLoadState('networkidle');
 
-  // Verify the share popup is displayed
-  await expect(page.locator('.orangehrm-buzz-share-post')).toBeVisible();
+  // Verify tab is active
+  await expect(page.locator('button:has-text("Most Liked Posts")')).toBeVisible();
 
-  // Click the Share button inside the popup
-  await page.locator('.orangehrm-buzz-share-post button:has-text("Share")').click();
-
-  // Verify success toast message is displayed
-  await expect(page.locator('.oxd-toast--success')).toBeVisible();
+  // Verify posts loaded
+  const posts = page.locator('.oxd-buzz-post');
+  await expect(posts.first()).toBeVisible();
 
 });

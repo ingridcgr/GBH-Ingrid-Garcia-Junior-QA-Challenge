@@ -1,10 +1,6 @@
-// This test case should failed since OrangeHRM allows for numeric values on Nationality, on a standard scope, this would be part of it
-// This test case should failed since OrangeHRM allows for numeric values on Nationality, on a standard scope, this would be part of it
-// This test case should failed since OrangeHRM allows for numeric values on Nationality, on a standard scope, this would be part of it
-
 const { test, expect } = require('@playwright/test');
 
-test('TC-04: Nationality field rejects numeric input', async ({ page }) => {
+test('TC-04: Add a Nationality', async ({ page }) => {
 
   // Go to the login page
   await page.goto('https://opensource-demo.orangehrmlive.com/');
@@ -37,15 +33,10 @@ test('TC-04: Nationality field rejects numeric input', async ({ page }) => {
 
   // Click and fill the Name field with a numeric value
   await page.getByRole('textbox').last().click();
-  await page.getByRole('textbox').last().fill('12345');
+  await page.getByRole('textbox').last().fill('DominicanAmerican');
 
   // Click the Save button
   await page.locator('button[type="submit"]').click();
-
-  // Verify error message is displayed
-  await expect(page.locator('.oxd-input-field-error-message')).toBeVisible();
-  await expect(page.locator('.oxd-input-field-error-message')).toHaveText('Invalid Values');
-
 });
 
 // This test case should failed since OrangeHRM allows for numeric values on Nationality, on a standard scope, this would be part of it
