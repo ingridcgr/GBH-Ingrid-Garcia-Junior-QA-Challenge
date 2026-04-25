@@ -166,33 +166,6 @@ API testing is handled using Postman to:
 
 ---
 
-## 📁 Project Structure
-
-```
-project-root/
-├── tests/
-│   ├── auth.spec.js
-│   ├── nationality.spec.js
-│   ├── qualification.spec.js
-│   ├── buzz.spec.js
-│   └── myinfo.spec.js
-├── pages/
-│   ├── LoginPage.js
-│   ├── DashboardPage.js
-│   ├── NationalityPage.js
-│   ├── QualificationPage.js
-│   ├── BuzzPage.js
-│   └── MyInfoPage.js
-├── postman/
-│   └── disney-api.json
-├── .github/
-│   └── workflows/
-│       └── ui-tests.yml
-├── playwright.config.js
-├── TEST_PLAN.md
-└── README.md
-```
-
 ------------------------------------------------------------------------
 
 ## ▶️ Running the Tests
